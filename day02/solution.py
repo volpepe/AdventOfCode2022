@@ -1,6 +1,9 @@
 import os
 from enum import Enum
-from typing import Tuple, List
+from typing import List, Tuple
+
+from aocd import get_data
+from dotenv import load_dotenv
 
 class Results(Enum):
     WIN  = 6
@@ -66,8 +69,8 @@ def get_total_points(ruleset:List):
     return sum(results_points) + sum(choices_points)
 
 if __name__ == '__main__':
-    with open(os.path.join('day02', 'input.txt'), 'r') as f:
-        lines = [line.rstrip() for line in f.readlines()]
+    load_dotenv()
+    lines = [line.rstrip() for line in get_data(day=2, year=2022).splitlines()]
     # Problem #1
     prob1_ruleset = [list(map(map_elements_to_rps, line.split(' '))) for line in lines]
     print(f"Total points if we consider rules as in problem 1: {get_total_points(prob1_ruleset)}")
