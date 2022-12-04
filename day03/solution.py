@@ -31,7 +31,7 @@ def groups_iterator(lines, group_size=3):
 
 if __name__ == '__main__':
     load_dotenv()
-    lines = [line.rstrip() for line in get_data(day=3, year=2022).splitlines()]
+    lines = get_data(day=3, year=2022).splitlines()
     # Problem #1
     scores = [
         get_character_score(

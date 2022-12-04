@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 if __name__ == '__main__':
     # Read input file
     load_dotenv()
-    lines = [line.rstrip() for line in get_data(day=1, year=2022).splitlines()]
+    lines = get_data(day=1, year=2022).splitlines()
     # Iterate over lines
     elf_calories = {}
     elf_id = 0

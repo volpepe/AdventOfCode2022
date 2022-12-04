@@ -70,7 +70,7 @@ def get_total_points(ruleset:List):
 
 if __name__ == '__main__':
     load_dotenv()
-    lines = [line.rstrip() for line in get_data(day=2, year=2022).splitlines()]
+    lines = get_data(day=2, year=2022).splitlines()
     # Problem #1
     prob1_ruleset = [list(map(map_elements_to_rps, line.split(' '))) for line in lines]
     print(f"Total points if we consider rules as in problem 1: {get_total_points(prob1_ruleset)}")
