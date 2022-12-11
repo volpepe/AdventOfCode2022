@@ -90,4 +90,3 @@ if __name__ == '__main__':
     print(f"The following image is what is show on the display of "
           f"the device at the end of execution:")
     print(str(cpu.screen))
-

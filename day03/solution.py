@@ -49,8 +49,3 @@ if __name__ == '__main__':
         for group in groups_iterator(lines)
     ]
     print(f"Score of group keys: {sum(scores)}")
-
-
-    
-    
-    

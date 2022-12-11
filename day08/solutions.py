@@ -103,6 +103,3 @@ if __name__ == '__main__':
     # Problem 2
     best_scenic_score, best_index = get_best_scenic_score(grid)
     print(f"The best scenic score ({best_scenic_score}) is at {best_index}")
-    
-
-    

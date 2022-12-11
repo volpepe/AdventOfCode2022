@@ -111,7 +111,7 @@ if __name__ == '__main__':
         if dir_size <= 100000:
             under_100000_sum += dir_size
     print(f'The sum of sizes of directories occupying at most 100000 is: {under_100000_sum}')
-    
+
     # Problem 2
     total_space = 70000000
     needed_space = 30000000
@@ -124,8 +124,3 @@ if __name__ == '__main__':
         if dir_size >= delete_at_least:
             break
     print(f"This can be achieved by removing dir {dir.get_name()}, occupying {dir.get_size()} of space")
-
-            
-    
-    
-    

@@ -19,7 +19,3 @@ if __name__ == '__main__':
         if len(set(signal[i:i+14])) == 14:
             break
     print(f"The message starts from charater {i+14}")
-
-
-
-
