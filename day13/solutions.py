@@ -1,6 +1,8 @@
 import functools
 from typing import List, Tuple
 
+import time
+
 from aocd import get_data
 from dotenv import load_dotenv
 
@@ -37,15 +39,9 @@ def compare(pair:Tuple):
     else:
         raise TypeError(f'Cannot compare types {type(l)} and {type(r)}')
 
-
 def sort_packets(packets:List[List]):
-    for i in range(len(packets)):
-        for j in range(1, len(packets)-i):
-            if not compare((packets[j-1], packets[j])):
-                # packets[j] is before packets[j-1]: swap them
-                packets[j-1], packets[j] = packets[j], packets[j-1]
+    packets = sorted(packets, key=functools.cmp_to_key(lambda l, r: -1 if compare((l, r)) else 1))
     return packets
-
 
 def parse_lines(lines:List[str]):
     packet_pairs = []
@@ -62,23 +58,23 @@ if __name__ == '__main__':
     lines = get_data(day=13, year=2022).splitlines()
     packet_pairs = parse_lines(lines)
 
-    # Examples
-    print("Examples:")
-    print(compare(([1,1,3,1,1], [1,1,5,1,1])))      # True
-    print(compare(([[1],[2,3,4]], [[1],4])))        # True
-    print(compare(([9], [[8,7,6]])))                # False
-    print(compare(([[4,4],4,4], [[4,4],4,4,4])))    # True
-    print(compare(([7,7,7,7], [7,7,7])))            # False
-    print(compare(([], [3])))                       # True
-    print(compare(([[[]]], [[]])))                  # False
-    print(compare(([1,[2,[3,[4,[5,6,7]]]],8,9], 
-                   [1,[2,[3,[4,[5,6,0]]]],8,9])))   # False
-    print(sort_packets([
-        [1,1,3,1,1], [1,1,5,1,1], [[1],[2,3,4]], [[1],4], [9], [[8,7,6]],
-        [[4,4],4,4], [[4,4],4,4,4], [7,7,7,7], [7,7,7], [], [3], [[[]]], [[]],
-        [1,[2,[3,[4,[5,6,7]]]],8,9], [1,[2,[3,[4,[5,6,0]]]],8,9], [[2]], [[6]]
-    ]))
-    print("----------")
+    # # Examples
+    # print("Examples:")
+    # print(compare(([1,1,3,1,1], [1,1,5,1,1])))      # True
+    # print(compare(([[1],[2,3,4]], [[1],4])))        # True
+    # print(compare(([9], [[8,7,6]])))                # False
+    # print(compare(([[4,4],4,4], [[4,4],4,4,4])))    # True
+    # print(compare(([7,7,7,7], [7,7,7])))            # False
+    # print(compare(([], [3])))                       # True
+    # print(compare(([[[]]], [[]])))                  # False
+    # print(compare(([1,[2,[3,[4,[5,6,7]]]],8,9], 
+    #                [1,[2,[3,[4,[5,6,0]]]],8,9])))   # False
+    # print(sort_packets([
+    #     [1,1,3,1,1], [1,1,5,1,1], [[1],[2,3,4]], [[1],4], [9], [[8,7,6]],
+    #     [[4,4],4,4], [[4,4],4,4,4], [7,7,7,7], [7,7,7], [], [3], [[[]]], [[]],
+    #     [1,[2,[3,[4,[5,6,7]]]],8,9], [1,[2,[3,[4,[5,6,0]]]],8,9], [[2]], [[6]]
+    # ]))
+    # print("----------")
 
     # Problem 1
     correct_pairs = []
