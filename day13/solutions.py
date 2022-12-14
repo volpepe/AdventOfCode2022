@@ -1,7 +1,6 @@
+import re
 import functools
 from typing import List, Tuple
-
-import time
 
 from aocd import get_data
 from dotenv import load_dotenv
@@ -45,11 +44,14 @@ def sort_packets(packets:List[List]):
 
 def parse_lines(lines:List[str]):
     packet_pairs = []
+    has_chars_regex = r'[a-z]'
     for i in range(0, len(lines), 3):
-        packet_pairs.append((
-            eval(lines[i]),     # I finally discovered eval
-            eval(lines[i+1])    # Here I translate strings to lists
-        ))
+        if not re.match(has_chars_regex, lines[i]) and \
+           not re.match(has_chars_regex, lines[i+1]):
+            packet_pairs.append((
+                eval(lines[i]),     # I finally discovered eval
+                eval(lines[i+1])    # Here I translate strings to lists
+            ))
     return packet_pairs
 
 
